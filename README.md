@@ -175,6 +175,7 @@ If you discover any security related issues, please email daniele@weble.it inste
 ## Credits
 
 - [Daniele Rosario](https://github.com/skullbock)
+- [Brent Roose](https://github.com/brendt)
 - [All Contributors](../../contributors)
 
 ## License
