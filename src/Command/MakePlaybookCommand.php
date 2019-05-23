@@ -47,13 +47,7 @@ class MakePlaybookCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        $namespace = config('playbooks.default_path', 'Playbooks');
-
-        if (stripos($namespace, '\\') !== 0) {
-            $namespace = $rootNamespace . '\\' . $namespace;
-        }
-
-        return $namespace;
+        return $rootNamespace . '\\Playbooks';
     }
 
     /**

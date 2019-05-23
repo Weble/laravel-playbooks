@@ -2,6 +2,7 @@
 
 namespace Weble\LaravelPlaybooks\Commands;
 
+use Composer\Autoload\ClassLoader;
 use Illuminate\Support\Str;
 use Weble\LaravelPlaybooks\Playbook;
 use Illuminate\Console\Command;
@@ -10,7 +11,7 @@ use Symfony\Component\Console\Question\Question;
 
 class RunPlaybookCommand extends Command
 {
-    protected $signature = 'playbook:run {playbook?} {--no-migration}';
+    protected $signature = 'playbook:run {playbook?} {--no-migration} {--migration}';
 
     protected $description = 'Setup the database against a predefined playbook';
 
@@ -18,11 +19,16 @@ class RunPlaybookCommand extends Command
 
     public function handle(): void
     {
-        if (app()->environment() !== 'local') {
-            $this->error('This command can only be run in the local environment!');
+        $allowedEnvs = config('playbooks.envs', ['local']);
+
+        if (!in_array(app()->environment(), $allowedEnvs)) {
+            $this->error('This command can only be run in these environments: '.json_encode($allowedEnvs));
         }
 
-        ini_set('memory_limit', '2048M');
+        $raiseMemory = config('playbooks.raise_memory_limit', '2048M');
+        if ($raiseMemory !== null) {
+            ini_set('memory_limit', $raiseMemory);
+        }
 
         $playbookName = $this->argument('playbook');
 
@@ -42,7 +48,12 @@ class RunPlaybookCommand extends Command
 
         $playbookDefinition = $this->resolvePlaybookDefinition($playbookName);
 
-        if (!$this->hasOption('--no-migration')) {
+        $migrateByDefault = config('playbooks.migrate_by_default', true);
+        if ($migrateByDefault && !$this->hasOption('--no-migration')) {
+            $this->migrate();
+        }
+
+        if (!$migrateByDefault && !$this->hasOption('--migration')) {
             $this->migrate();
         }
 
@@ -52,7 +63,6 @@ class RunPlaybookCommand extends Command
     protected function migrate(): void
     {
         $this->info('Clearing the database');
-
         $this->call('migrate:refresh');
     }
 
@@ -105,7 +115,7 @@ class RunPlaybookCommand extends Command
 
     protected function getAvailablePlaybooks(): array
     {
-        $files = scandir(database_path('playbooks'));
+        $files = scandir($this->getDefaultPlaybooksPath());
 
         unset($files[0], $files[1]);
 
@@ -125,9 +135,10 @@ class RunPlaybookCommand extends Command
         }
 
         $className = $class;
+        $namespace = $this->getDefaultNamespace();
 
-        if (!Str::startsWith($class, ['\\Database\\Playbooks', 'Database\\Playbooks'])) {
-            $className = "\\Database\\Playbooks\\{$class}";
+        if (!Str::startsWith($class, ['\\'.$namespace, $namespace])) {
+            $className = $this->getDefaultNamespace() . "\\{$class}";
         }
 
         return new PlaybookDefinition($className);
@@ -143,5 +154,15 @@ class RunPlaybookCommand extends Command
     protected function definitionHasRun(PlaybookDefinition $definition): bool
     {
         return isset($this->ranDefinitions[$definition->id]);
+    }
+
+    protected function getDefaultNamespace(): string
+    {
+        return app()->getNamespace() . 'Playbooks';
+    }
+
+    protected function getDefaultPlaybooksPath(): string
+    {
+        return app_path('Playbooks');
     }
 }

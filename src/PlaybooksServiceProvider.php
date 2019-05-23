@@ -4,6 +4,7 @@ namespace Weble\LaravelPlaybooks;
 
 use Illuminate\Support\ServiceProvider;
 use Weble\LaravelPlaybooks\Command\MakePlaybookCommand;
+use Weble\LaravelPlaybooks\Commands\RunPlaybookCommand;
 
 class PlaybooksServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,8 @@ class PlaybooksServiceProvider extends ServiceProvider
             ], 'config');
 
             $this->commands([
-                MakePlaybookCommand::class
+                MakePlaybookCommand::class,
+                RunPlaybookCommand::class
             ]);
         }
     }
