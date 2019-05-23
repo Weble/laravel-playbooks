@@ -1,0 +1,49 @@
+{
+    "name": "weble/laravel-playbooks",
+    "description": "Run different sets of playbooks within your Laravel application",
+    "type": "package",
+    "license": "MIT",
+    "homepage": "https://github.com/weble/laravel-playbooks",
+    "authors": [
+        {
+            "name": "Daniele Rosario",
+            "email": "daniele@weble.it"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "larapack/dd": "^1.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Weble\\LaravelPlaybooks\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Weble\\LaravelPlaybooks\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Weble\\LaravelPlaybooks\\PlaybooksServiceProvider"
+            ],
+            "aliases": {
+                "Playbooks": "Weble\\LaravelPlaybooks\\PlaybooksFacade"
+            }
+        }
+    }
+}
