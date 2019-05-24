@@ -4,6 +4,7 @@ namespace Weble\LaravelPlaybooks\Commands;
 
 use Composer\Autoload\ClassLoader;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputArgument;
 use Weble\LaravelPlaybooks\Playbook;
 use Illuminate\Console\Command;
 use Weble\LaravelPlaybooks\PlaybookDefinition;
@@ -11,7 +12,9 @@ use Symfony\Component\Console\Question\Question;
 
 class RunPlaybookCommand extends Command
 {
-    protected $signature = 'playbook:run {playbook?} {--no-migration} {--migration}';
+    protected $signature = 'playbook:run {playbook?} 
+                            {--no-migration : Do not run migrations}
+                            {--migration : Run migrations first}';
 
     protected $description = 'Setup the database against a predefined playbook';
 
@@ -49,11 +52,12 @@ class RunPlaybookCommand extends Command
         $playbookDefinition = $this->resolvePlaybookDefinition($playbookName);
 
         $migrateByDefault = config('playbooks.migrate_by_default', true);
-        if ($migrateByDefault && !$this->hasOption('--no-migration')) {
+
+        if ($migrateByDefault && !$this->hasOption('no-migration')) {
             $this->migrate();
         }
 
-        if (!$migrateByDefault && !$this->hasOption('--migration')) {
+        if (!$migrateByDefault && !$this->hasOption('migration')) {
             $this->migrate();
         }
 
