@@ -53,11 +53,11 @@ class RunPlaybookCommand extends Command
 
         $migrateByDefault = config('playbooks.migrate_by_default', true);
 
-        if ($migrateByDefault && !$this->hasOption('no-migration')) {
+        if ($migrateByDefault && !$this->option('no-migration')) {
             $this->migrate();
         }
 
-        if (!$migrateByDefault && !$this->hasOption('migration')) {
+        if (!$migrateByDefault && !$this->option('migration')) {
             $this->migrate();
         }
 
