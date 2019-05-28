@@ -57,7 +57,7 @@ class RunPlaybookCommand extends Command
             $this->migrate();
         }
 
-        if (!$migrateByDefault && !$this->option('migration')) {
+        if (!$migrateByDefault && $this->option('migration')) {
             $this->migrate();
         }
 
