@@ -1,6 +1,6 @@
 <?php
 
-namespace Weble\LaravelPlaybooks\Commands;
+namespace Weble\LaravelPlaybooks\Command;
 
 use Composer\Autoload\ClassLoader;
 use Illuminate\Support\Str;
