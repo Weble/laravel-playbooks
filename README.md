@@ -159,7 +159,7 @@ php artisan playbook:run FullPlaybook
 
 ### TODO
 
-Write tests
+Write more tests for the run command
 
 ### Changelog
 
