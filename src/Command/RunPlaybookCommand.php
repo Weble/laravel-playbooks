@@ -162,11 +162,23 @@ class RunPlaybookCommand extends Command
 
     protected function getDefaultNamespace(): string
     {
-        return app()->getNamespace() . 'Playbooks';
+        $path = trim(config('playbooks.path') ?? 'Playbooks');
+
+        if(Str::startsWith($path, '/')){
+            $path = Str::replaceFirst('/', '', $path);
+        }
+
+        if(Str::endsWith($path, '/')){
+            $path = Str::replaceLast('/', '', $path);
+        }
+
+        $path = str_replace('/', '\\', $path);
+
+        return app()->getNamespace() . trim($path);
     }
 
     protected function getDefaultPlaybooksPath(): string
     {
-        return app_path('Playbooks');
+        return app_path(config('playbooks.path') ?? 'Playbooks');
     }
 }

@@ -3,6 +3,7 @@
 namespace Weble\LaravelPlaybooks\Command;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -47,6 +48,10 @@ class MakePlaybookCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
+        if ($this->isCustomNamespace()) {
+            return $rootNamespace;
+        }
+
         return $rootNamespace . '\\Playbooks';
     }
 
@@ -72,5 +77,10 @@ class MakePlaybookCommand extends GeneratorCommand
         return [
 
         ];
+    }
+
+    protected function isCustomNamespace(): bool
+    {
+        return Str::contains($this->argument('name'), '/');
     }
 }
