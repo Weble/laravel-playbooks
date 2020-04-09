@@ -34,6 +34,18 @@ class RunPlaybookCommandTest extends TestCase
     }
 
     /** @test */
+    public function can_run_playbook_at_default_path_if_no_config_for_path_exists()
+    {
+        Config::set('playbooks.path', null);
+
+        $this->artisan('playbook:run Test')->assertExitCode(0);
+
+        $this->assertDatabaseHas('cars', [
+            'title' => 'Economy'
+        ]);
+    }
+
+    /** @test */
     public function can_run_playbook_at_a_custom_path_from_config()
     {
         Config::set('playbooks.path', 'Console/Playbooks');
