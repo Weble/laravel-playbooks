@@ -65,7 +65,20 @@ return [
     |
     | default: true
      */
-    'migrate_by_default' => true
+    'migrate_by_default' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Playbook path
+    |--------------------------------------------------------------------------
+    |
+    | Choose the root directory where new Playbooks should be created and where
+    | the `php artisan playbook:run` command should scan for available playbooks
+    | example: 'Console/Playbooks'
+    |
+    | default: 'Playbooks'
+     */
+    'path' => 'Playbooks',
 ];
 ```
 ## Usage
@@ -79,7 +92,16 @@ First create one (or more) playbooks
 php artisan make:playbook FullPlaybook
 ```
 
-Then write some stuff in it:
+This playbook will have the `App\Playbooks` namespace and will be saved in `app/Playbooks`.
+
+You can also specify a custom namespace, say, App\Console\Playbooks
+
+```bash
+php artisan make:playbook "Console/Playbooks/FullPlaybook"
+```
+This playbook will have the App\Console\Presenters namespace and will be saved in app/Console/Playbooks.
+
+Now, you're free to write some stuff in it:
 
 ```php
 <?php
