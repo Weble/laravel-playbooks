@@ -97,7 +97,7 @@ This playbook will have the `App\Playbooks` namespace and will be saved in `app/
 You can also specify a custom namespace, say, App\Console\Playbooks
 
 ```bash
-php artisan make:playbook "Console/Playbooks/FullPlaybook"
+php artisan make:playbook Console/Playbooks/FullPlaybook
 ```
 This playbook will have the App\Console\Presenters namespace and will be saved in app/Console/Playbooks.
 
