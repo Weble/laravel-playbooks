@@ -38,5 +38,18 @@ return [
     |
     | default: true
      */
-    'migrate_by_default' => true
+    'migrate_by_default' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Playbook path
+    |--------------------------------------------------------------------------
+    |
+    | Choose the root directory where new Playbooks should be created and where
+    | the `php artisan playbook:run` command should scan for available playbooks
+    | example: 'Console/Playbooks'
+    |
+    | default: 'Playbooks'
+     */
+    'path' => 'Playbooks',
 ];
