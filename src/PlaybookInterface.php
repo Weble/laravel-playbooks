@@ -2,6 +2,9 @@
 
 namespace Weble\LaravelPlaybooks;
 
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 interface PlaybookInterface
 {
     public static function times(int $times): PlaybookDefinition;
@@ -10,7 +13,7 @@ interface PlaybookInterface
 
     public function before(): array;
 
-    public function run(): void;
+    public function run(?InputInterface $input, ?OutputInterface $output): void;
 
     public function hasRun(): void;
 

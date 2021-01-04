@@ -2,6 +2,9 @@
 
 namespace Weble\LaravelPlaybooks;
 
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 abstract class Playbook implements PlaybookInterface
 {
     public static $timesRun = 0;
@@ -21,7 +24,7 @@ abstract class Playbook implements PlaybookInterface
         return [];
     }
 
-    abstract public function run(): void;
+    abstract public function run(?InputInterface $input, ?OutputInterface $output): void;
 
     public function hasRun(): void
     {
