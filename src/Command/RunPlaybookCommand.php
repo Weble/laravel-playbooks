@@ -9,6 +9,8 @@ use Weble\LaravelPlaybooks\Playbook;
 use Illuminate\Console\Command;
 use Weble\LaravelPlaybooks\PlaybookDefinition;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class RunPlaybookCommand extends Command
 {
@@ -20,7 +22,7 @@ class RunPlaybookCommand extends Command
 
     protected $ranDefinitions = [];
 
-    public function handle(): void
+    public function handle(?InputInterface $input, ?OutputInterface $output): void
     {
         $allowedEnvs = config('playbooks.envs', ['local']);
 
@@ -61,7 +63,7 @@ class RunPlaybookCommand extends Command
             $this->migrate();
         }
 
-        $this->runPlaybook($playbookDefinition);
+        $this->runPlaybook($playbookDefinition, $input, $output);
     }
 
     protected function migrate(): void
@@ -70,11 +72,13 @@ class RunPlaybookCommand extends Command
         $this->call('migrate:refresh');
     }
 
-    protected function runPlaybook(PlaybookDefinition $definition): void
+    protected function runPlaybook(PlaybookDefinition $definition, ?InputInterface $input, ?OutputInterface $output): void
     {
         foreach ($definition->playbook->before() as $before) {
             $this->runPlaybook(
-                $this->resolvePlaybookDefinition($before)
+                $this->resolvePlaybookDefinition($before),
+                $input,
+                $output
             );
         }
 
@@ -85,7 +89,7 @@ class RunPlaybookCommand extends Command
 
             $this->infoRunning($definition->playbook, $i);
 
-            $definition->playbook->run();
+            $definition->playbook->run($input, $output);
             $definition->playbook->hasRun();
 
             $this->ranDefinitions[$definition->id] = ($this->ranDefinitions[$definition->id] ?? 0) + 1;
@@ -93,7 +97,9 @@ class RunPlaybookCommand extends Command
 
         foreach ($definition->playbook->after() as $after) {
             $this->runPlaybook(
-                $this->resolvePlaybookDefinition($after)
+                $this->resolvePlaybookDefinition($after),
+                $input,
+                $output
             );
         }
     }
