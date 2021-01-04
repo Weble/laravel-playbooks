@@ -13,7 +13,7 @@ interface PlaybookInterface
 
     public function before(): array;
 
-    public function run(?InputInterface $input, ?OutputInterface $output): void;
+    public function run(InputInterface $input, OutputInterface $output);
 
     public function hasRun(): void;
 

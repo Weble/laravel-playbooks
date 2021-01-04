@@ -3,6 +3,8 @@
 namespace App\Playbooks;
 
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Weble\LaravelPlaybooks\Playbook;
 
 final class Test extends Playbook
@@ -14,7 +16,7 @@ final class Test extends Playbook
         ];
     }
 
-    public function run(): void
+    public function run(InputInterface $input, OutputInterface $output): void
     {
         $cars = [
             'Economy',

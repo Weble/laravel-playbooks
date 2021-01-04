@@ -24,7 +24,7 @@ abstract class Playbook implements PlaybookInterface
         return [];
     }
 
-    abstract public function run(?InputInterface $input, ?OutputInterface $output): void;
+    abstract public function run(InputInterface $input, OutputInterface $output);
 
     public function hasRun(): void
     {
