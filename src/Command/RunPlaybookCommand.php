@@ -10,9 +10,6 @@ use Illuminate\Console\Command;
 use Weble\LaravelPlaybooks\PlaybookDefinition;
 use Symfony\Component\Console\Question\Question;
 
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-
 class RunPlaybookCommand extends Command
 {
     protected $signature = 'playbook:run {playbook?} 
