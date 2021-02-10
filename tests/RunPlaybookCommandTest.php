@@ -11,8 +11,9 @@ class RunPlaybookCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/database');
         File::copyDirectory(__DIR__. '/data', $this->app->basePath('app'));
+
+        $this->loadMigrationsFrom(__DIR__ . '/database');
     }
 
     protected function tearDown(): void

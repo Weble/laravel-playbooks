@@ -67,7 +67,7 @@ class RunPlaybookCommand extends Command
     protected function migrate(): void
     {
         $this->info('Clearing the database');
-        $this->call('migrate:fresh');
+        $this->call('migrate:refresh');
     }
 
     protected function runPlaybook(PlaybookDefinition $definition): void
