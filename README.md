@@ -83,7 +83,7 @@ return [
 ```
 ## Usage
 
-***NOTE: By default this package runs a ```migrate:refresh``` command before running every playbook.
+***NOTE: By default this package runs a ```migrate:fresh``` command before running every playbook.
 You can disable this behaviour in the config or with the manual --no-migration option in the command.***  
 
 First create one (or more) playbooks
