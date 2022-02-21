@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: phpunit/phpunit
+    versions:
+    - 9.5.1
+    - 9.5.2
+  - dependency-name: orchestra/testbench
+    versions:
+    - 6.11.0
+    - 6.9.0
+  - dependency-name: laravel/framework
+    versions:
+    - 8.25.0
