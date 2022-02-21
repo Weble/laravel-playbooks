@@ -8,6 +8,13 @@
 Run different sets of playbooks within your Laravel application.
 Inspired and taken (with some liberties) from [Aggregate by Brent](https://github.com/brendt/aggregate.stitcher.io/tree/master/app/App/Console)
 
+## Version Compatibility
+
+Version   | Illuminate  | Status         | PHP Version
+:----------|:------------|:---------------|:------------
+3.x       | 9.x         | Active Support | ^8.0
+2.x       | 5.8.x - 8.x | End of life    | ^7.4
+
 ## Installation
 
 You can install the package via composer:
@@ -199,6 +206,7 @@ If you discover any security related issues, please email daniele@weble.it inste
 
 - [Daniele Rosario](https://github.com/skullbock)
 - [Brent Roose](https://github.com/brendt)
+- [John Wyles](https://github.com/fourstacks)
 - [All Contributors](../../contributors)
 
 ## License
