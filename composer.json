@@ -25,7 +25,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Weble\\LaravelPlaybooks\\Tests\\": "tests"
+            "Weble\\LaravelPlaybooks\\Tests\\": "tests",
+            "App\\": "fixtures"
         }
     },
     "scripts": {
