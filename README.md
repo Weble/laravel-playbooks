@@ -12,7 +12,8 @@ Inspired and taken (with some liberties) from [Aggregate by Brent](https://githu
 
 | Version | Illuminate  | Status         | PHP Version |
 |:--------|:------------|:---------------|:------------|
-| 3.x     | 9.x, 10.x   | Active Support | ^8.0        |
+| 4.x     | 10.x        | Active Support | ^8.1        |
+| 3.x     | 9.x         | Active Support | ^8.0        |
 | 2.x     | 5.8.x - 8.x | End of life    | ^7.4        |
 
 ## Installation

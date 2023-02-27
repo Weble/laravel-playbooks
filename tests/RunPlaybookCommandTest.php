@@ -3,7 +3,6 @@
 namespace Weble\LaravelPlaybooks\Tests;
 
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
 
 class RunPlaybookCommandTest extends TestCase
 {
