@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Weble\LaravelPlaybooks\Tests;
-
 
 use Illuminate\Support\Facades\File;
 

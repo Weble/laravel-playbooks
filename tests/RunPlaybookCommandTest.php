@@ -3,7 +3,6 @@
 namespace Weble\LaravelPlaybooks\Tests;
 
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
 
 class RunPlaybookCommandTest extends TestCase
 {
@@ -11,16 +10,7 @@ class RunPlaybookCommandTest extends TestCase
     {
         parent::setUp();
 
-        File::copyDirectory(__DIR__. '/data', $this->app->basePath('app'));
-
         $this->loadMigrationsFrom(__DIR__ . '/database');
-    }
-
-    protected function tearDown(): void
-    {
-        File::deleteDirectories($this->app->basePath('app'));
-
-        parent::tearDown();
     }
 
     /** @test */
