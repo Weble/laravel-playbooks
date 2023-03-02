@@ -10,11 +10,11 @@ Inspired and taken (with some liberties) from [Aggregate by Brent](https://githu
 
 ## Version Compatibility
 
-| Version | Illuminate  | Status         | PHP Version |
-|:--------|:------------|:---------------|:------------|
-| 4.x     | 9.0, 10.x   | Active Support | ^8.0 | ^8.1 |
-| 3.x     | 8.x, 9.x    | Active Support | ^8.0        |
-| 2.x     | 5.8.x - 8.x | End of life    | ^7.4        |
+| Version | Illuminate  | Status         | PHP Version      |
+|:--------|:------------|:---------------|:-----------------|
+| 4.x     | 9.0, 10.x   | Active Support | ^8.0 ^8.1 ^8.2   |
+| 3.x     | 8.x, 9.x    | Active Support | ^8.0             |
+| 2.x     | 5.8.x - 8.x | End of life    | ^7.4             |
 
 ## Installation
 

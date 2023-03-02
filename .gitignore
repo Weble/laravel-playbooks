@@ -6,3 +6,4 @@ composer.lock
 docs
 coverage.clover
 .phpunit.result.cache
+.phpunit.cache
